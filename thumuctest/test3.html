@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Nunito+Sans:wght@200&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <title>Document</title>
+
+    <style type="text/css">
+        input[type=submit] {
+            position: relative;
+            z-index: 9;
+            display: inline-block;
+            padding: 0 30px;
+            background: green;
+            font-family: 'Nunito Sans', sans-serif;
+            border: none;
+            border-radius: 999px;
+            color: #fff;
+            font-size: .6875rem;
+            font-weight: 700;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            line-height: 42px;
+            text-align: center;
+            transition: .4s;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+<p class="comment-form-comment"><label for="comment">Comment <span class="required">*</span></label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" required></textarea></p>
+<p class="comment-form-author"><label for="author">Name <span class="required">*</span></label> <input id="author" name="author" type="text" value="" size="30" maxlength="245" autocomplete="name" required /></p>
+<p class="comment-form-email"><label for="email">Email <span class="required">*</span></label> <input id="email" name="email" type="email" value="" size="30" maxlength="100" aria-describedby="email-notes" autocomplete="email" required /></p>
+<p class="comment-form-url"><label for="url">Website</label> <input id="url" name="url" type="url" value="" size="30" maxlength="200" autocomplete="url" /></p>
+<p class="comment-form-cookies-consent"><input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes" /> <label for="wp-comment-cookies-consent">Save my name, email, and website in this browser for the next time I comment.</label></p>
+<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Post Comment" /></p>
+
+<div id="comments-container"></div>
+
+<script>
+    document.getElementById("submit").addEventListener("click", function(event) {
+        event.preventDefault(); // Ngăn chặn việc gửi form đi
+
+        var author = document.getElementById("author").value;
+        var comment = document.getElementById("comment").value;
+
+        // Hiển thị thông tin đã lưu dưới phần comment
+        var savedDataContainer = document.createElement("div");
+        savedDataContainer.innerHTML = "<p><strong>Author: </strong>" + author + "</p>" +
+            "<p><strong>Comment: </strong>" + comment + "</p>";
+
+        document.getElementById("comments-container").appendChild(savedDataContainer);
+
+        // Xóa nội dung trong các trường nhập liệu sau khi gửi comment thành công
+        document.getElementById("author").value = "";
+        document.getElementById("comment").value = "";
+    });
+</script>
+</body>
+</html>
